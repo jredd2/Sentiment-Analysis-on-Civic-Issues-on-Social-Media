@@ -32,13 +32,17 @@ nltk.download('vader_lexicon')
 # TWITTER_ACCESS_TOKEN=your_token
 # TWITTER_ACCESS_SECRET=your_token_secret
 
+# Load .env variables
 load_dotenv()
 
-consumer_key = os.environ.get("TWITTER_CONSUMER_KEY")
-consumer_secret = os.environ.get("TWITTER_CONSUMER_SECRET")
-access_token = os.environ.get("TWITTER_ACCESS_TOKEN")
-access_token_secret = os.environ.get("TWITTER_ACCESS_SECRET")
+consumer_key = os.getenv("TWITTER_CONSUMER_KEY")
+consumer_secret = os.getenv("TWITTER_CONSUMER_SECRET")
+access_token = os.getenv("TWITTER_ACCESS_TOKEN")
+access_token_secret = os.getenv("TWITTER_ACCESS_SECRET")
 
+# Authenticate using OAuth 1.0a
+auth = tweepy.OAuth1UserHandler(consumer_key, consumer_secret, access_token, access_token_secret)
+api = tweepy.API(auth, wait_on_rate_limit=True)
 # ================================
 # 3. Connect to Twitter API
 # ================================
