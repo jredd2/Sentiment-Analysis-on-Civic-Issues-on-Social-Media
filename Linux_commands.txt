@@ -1,0 +1,4 @@
+# Run these commands to use sn scrape inside of conda container
+
+conda create -n snscrape python=3.10
+conda activate snscrape
