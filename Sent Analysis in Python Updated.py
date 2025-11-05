@@ -49,15 +49,19 @@ query = (
 )
 response = client.search_recent_tweets(
     query=query,
-    max_results=20,
+    max_results=40,
+    start_time="2025-08-01T00:00:00Z",
+    end_time="2025-10-01T00:00:00Z",
     tweet_fields=["created_at", "text", "author_id"]
 )
+
 data = []
 if response.data:
     for tweet in response.data:
         data.append(tweet.text)
 else:
     print("No tweets found for this query.")
+
 df = pd.DataFrame(data, columns=["tweet"])
 
 # ================================
